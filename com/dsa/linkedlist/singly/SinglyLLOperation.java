@@ -19,7 +19,7 @@ public class SinglyLLOperation<T> {
             node = newNode;
         } else {
             Node<T> temp = node;
-            while(temp.next != null){
+            while (temp.next != null) {
                 temp = temp.next;
             }
             temp.next = newNode;
@@ -208,14 +208,14 @@ public class SinglyLLOperation<T> {
 
 
     public Node<T> removeDuplicatesSortedList(Node<T> node) {
-        if(node == null || node.next == null){
+        if (node == null || node.next == null) {
             return node;
         }
         Node<T> prev = node;
         Node<T> next = node.next;
         Node<T> curr = node;
-        while(next != null){
-            if(prev.data != next.data){
+        while (next != null) {
+            if (prev.data != next.data) {
                 curr.next = next;
                 curr = next;
             } else {
@@ -232,7 +232,7 @@ public class SinglyLLOperation<T> {
         // 1 2 3 4 5 6 , k = 4
         // 1. do partition of node (till kth rotation, remaining nodes)
         Node<T> temp = node;
-        for(int i=1; i<(int)noOfRotate & temp != null; i++){
+        for (int i = 1; i < (int) noOfRotate & temp != null; i++) {
             temp = temp.next;
         }
         assert temp != null;
@@ -245,7 +245,7 @@ public class SinglyLLOperation<T> {
     }
 
     private Node<T> mergeTwoNode(Node<T> node, Node<T> partitionNode) {
-        while(partitionNode != null) {
+        while (partitionNode != null) {
             // get last node from partitionNode
             Node<T> temp = partitionNode;
             while (temp.next != null && temp.next.next != null) {
@@ -253,7 +253,7 @@ public class SinglyLLOperation<T> {
             }
             // if single node left
             Node<T> lastNode = null;
-            if(temp.next == null){
+            if (temp.next == null) {
                 lastNode = temp;
                 partitionNode = null;
                 temp = null;
@@ -269,4 +269,100 @@ public class SinglyLLOperation<T> {
         return node;
     }
 
+    public Node<T> rotateKNodes2ndApproach(Node<T> node, int noOfRotation) {
+        if (node == null) {
+            return null;
+        }
+        Node<T> lastNode = node;
+        Node<T> temp = node;
+
+        // get lastNode
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
+        }
+        // detach one node each time from front and attach to last node
+        while (noOfRotation > 0) {
+            // move the head to one node
+            node = node.next;
+            // get node from front
+            temp.next = null;
+
+            // front to node attach to last node
+            lastNode.next = temp;
+            lastNode = temp;
+
+            // reassign temp with new  head node
+            temp = node;
+            noOfRotation--;
+        }
+        return node;
+    }
+
+    public boolean detectLoop(Node<T> node) {
+        if (node == null) return false;
+        // Floyd’s Cycle-Finding Algorithm
+        Node<T> slow = node;
+        Node<T> fast = node;
+        while (slow != null && fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Node<T> skipMdeleteN(Node<T> node, int m, int n) {
+        if (node == null) return null;
+        Node<T> curr = node;
+        Node<T> temp;
+        // traverse whole list
+        // 1->2->3->4->5->6->7->8
+        while (curr != null) {
+            // skip M nodes
+            for(int i = 1; i<m & curr != null; i++){
+                curr = curr.next;
+            }
+            // if last node reached with M skip, then no node to delete
+            if(curr == null) return node;
+            // assign start node to head for delete the N nodes
+            temp = curr.next;
+            // delete N nodes, keep next node of last deleted node as temp
+            for(int i = 1; i<=n & temp != null; i++){
+                temp = temp.next;
+            }
+            // assign last node of temp with current node
+            curr.next = temp;
+            // update the current node.
+            curr = temp;
+        }
+        return node;
+    }
+
+    public void swapPairWise(Node<T> node) {
+        Node<T> temp = node;
+        while(temp != null && temp.next != null){
+            T tData = temp.data;
+            temp.data = temp.next.data;
+            temp.next.data = tData;
+            temp = temp.next.next;
+        }
+    }
+
+    public Node<T> reverseKGroup(Node<T> node, int K) {
+        Node<T> prev = null;
+        Node<T> curr = node;
+        Node<T> next = node;
+        while(next != null){
+            for (int i = 0; i<K & curr != null; i++){
+                next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+            prev = null;
+        }
+        return prev;
+    }
 }

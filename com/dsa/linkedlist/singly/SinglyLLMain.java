@@ -52,17 +52,57 @@ public class SinglyLLMain {
 //        ll.print(freshNodeList);
 
         // rotate clockwise k nodes
+//        Node<Integer> node = null;
+//        node = ll.insertForGivenNodeAtEnd(node, 1);
+//        node = ll.insertForGivenNodeAtEnd(node, 2);
+//        node = ll.insertForGivenNodeAtEnd(node, 3);
+//        node = ll.insertForGivenNodeAtEnd(node, 4);
+//        node = ll.insertForGivenNodeAtEnd(node, 5);
+//        node = ll.insertForGivenNodeAtEnd(node, 6);
+//        node = ll.insertForGivenNodeAtEnd(node, 7);
+//        node = ll.insertForGivenNodeAtEnd(node, 8);
+//        node = ll.insertForGivenNodeAtEnd(node, 9);
+//        var rotatedNode = ll.rotateKNodes(node, 2);
+//        var rotatedNode = ll.rotateKNodes2ndApproach(node, 2);
+//        ll.print(rotatedNode);
+
+        // Loop detection
+//        Node<Integer> node = null;
+//        node = ll.insertForGivenNodeAtEnd(node,20);
+//        node = ll.insertForGivenNodeAtEnd(node,4);
+//        node = ll.insertForGivenNodeAtEnd(node,15);
+//        node = ll.insertForGivenNodeAtEnd(node,10);
+//
+//        /*Create loop for testing */
+//        node.next.next.next.next = node;
+//        var isLoopExists = ll.detectLoop(node);
+//        System.out.println(isLoopExists);
+
+        // Delete N nodes after M nodes of a linked list
+//        Node<Integer> node = null;
+//        node = ll.insertForGivenNodeAtEnd(node,1);
+//        node = ll.insertForGivenNodeAtEnd(node,2);
+//        node = ll.insertForGivenNodeAtEnd(node,3);
+//        node = ll.insertForGivenNodeAtEnd(node,4);
+//        node = ll.insertForGivenNodeAtEnd(node,5);
+//        node = ll.insertForGivenNodeAtEnd(node,6);
+//        node = ll.insertForGivenNodeAtEnd(node,7);
+//        node = ll.insertForGivenNodeAtEnd(node,8);
+//        node = ll.insertForGivenNodeAtEnd(node,9);
+//        int M = 2, N = 4;
+//        var newNode = ll.skipMdeleteN(node, M, N);
+//        ll.print(newNode);
+
+        // swap pair wise
         Node<Integer> node = null;
-        node = ll.insertForGivenNodeAtEnd(node, 1);
-        node = ll.insertForGivenNodeAtEnd(node, 2);
-        node = ll.insertForGivenNodeAtEnd(node, 3);
-        node = ll.insertForGivenNodeAtEnd(node, 4);
-        node = ll.insertForGivenNodeAtEnd(node, 5);
-        node = ll.insertForGivenNodeAtEnd(node, 6);
-        node = ll.insertForGivenNodeAtEnd(node, 7);
-        node = ll.insertForGivenNodeAtEnd(node, 8);
-        node = ll.insertForGivenNodeAtEnd(node, 9);
-        var rotatedNode = ll.rotateKNodes(node, 1);
-        ll.print(rotatedNode);
+        node = ll.insertForGivenNodeAtEnd(node,1);
+        node = ll.insertForGivenNodeAtEnd(node,2);
+        node = ll.insertForGivenNodeAtEnd(node,3);
+        node = ll.insertForGivenNodeAtEnd(node,4);
+        node = ll.insertForGivenNodeAtEnd(node,5);
+//        ll.swapPairWise(node);
+        node = ll.reverseKGroup(node, 3);
+        ll.print(node);
+
     }
 }

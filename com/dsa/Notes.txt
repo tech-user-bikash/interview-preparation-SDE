@@ -1,0 +1,3 @@
+Algorithm:
+==========
+1. Floyd’s Cycle-Finding Algorithm: loop detection in LL.
