@@ -1,0 +1,6 @@
+Top 50 Question from GFG
+========================
+https://www.geeksforgeeks.org/top-20-linked-list-interview-question/
+
+Note:
+1. Whenever is required to create a new list to store the result, prefer concept of dummy node.
