@@ -2,10 +2,13 @@ package com.dsa.stack;
 
 import java.util.*;
 
+/**
+ * LRU = Least Recently Used
+ */
 public class LRUCache {
     private static int CACHE_SIZE;
-    Map<Integer, Node> map;
-    Deque<Node> deque;
+    Map<Integer, LRUNode> map;
+    Deque<LRUNode> deque;
 
     LRUCache(int capacity) {
         CACHE_SIZE = capacity;
@@ -15,24 +18,20 @@ public class LRUCache {
 
     // 1. put operation
     public void put(int key, int value) {
-        // to update an existing node
-         if(!deque.isEmpty() && deque.size() <= CACHE_SIZE && !map.isEmpty()
-                 && map.get(key) != null && map.get(key).key == key){
-             var node = map.get(key);
-             deque.remove(node);
-             node.value = value;
-             deque.addFirst(node);
-             map.put(key, node);
-         } else {
-             // if queue is empty, put in front
-             var newNode = new Node(key, value);
-             if (deque.size() >= CACHE_SIZE) {
-                 deque.removeLast();
-             }
-             deque.addFirst(newNode);
-             map.put(key, newNode);
-         }
-
+        // 1. if already present, update it
+        if (map.containsKey(key)) {
+            // remove LRUNode
+            deque.remove(map.get(key));
+        }
+        // 2. Cache full, new element came, remove last and add new one to front
+        if (map.size() == CACHE_SIZE) {
+            // remove LRUNode
+            deque.removeLast();
+        }
+        // 3. insert LRUNode at first
+        var newLRUNode = new LRUNode(key, value);
+        deque.addFirst(newLRUNode);
+        map.put(key, newLRUNode);
 
     }
 
@@ -41,18 +40,18 @@ public class LRUCache {
         if (!map.containsKey(key)) {
             return -1;
         }
-        var node = map.get(key);
-        deque.remove(node);
-        deque.addFirst(node);
-        return node.value;
+        var LRUNode = map.get(key);
+        deque.remove(LRUNode);
+        deque.addFirst(LRUNode);
+        return LRUNode.value;
     }
 }
 
-class Node {
+class LRUNode {
     int key;
     int value;
 
-    Node(int key, int value) {
+    LRUNode(int key, int value) {
         this.key = key;
         this.value = value;
     }

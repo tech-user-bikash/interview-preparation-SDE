@@ -1,1 +1,8 @@
+https://www.youtube.com/watch?v=tqQ5fTamIN4&list=PLgUwDviBIf0pOd5zvVVSzgpo6BaCpHT9c
+
 LIFO = Last In First Out.
+
+Stack using Array, LinkedList, Queue.
+
+while performing Stack implementation using Queue. before pushing any element, if any element is already present,
+simply reverse it and push.

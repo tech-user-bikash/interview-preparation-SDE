@@ -1,0 +1,16 @@
+https://www.youtube.com/watch?v=tqQ5fTamIN4&list=PLgUwDviBIf0pOd5zvVVSzgpo6BaCpHT9c
+
+- It follows FIFO approach.
+- It has the operations like
+  add(), offer(),
+  remove(), poll(),
+  element(), peek()
+- Queue has implementation class like LinkedList, PriorityQueue, ArrayDeque.
+- Queue using Array, LinkedList
+
+Important
+=========
+- If size is not exceeds and rear reaches the end of queue, then empty spaces are from font. use the mod operation to
+  decide the place from to insert the new element.
+  end = (end+1) % size;
+
