@@ -6,11 +6,16 @@ https://www.youtube.com/watch?v=tqQ5fTamIN4&list=PLgUwDviBIf0pOd5zvVVSzgpo6BaCpH
   remove(), poll(),
   element(), peek()
 - Queue has implementation class like LinkedList, PriorityQueue, ArrayDeque.
-- Queue using Array, LinkedList
+- Queue using Array, LinkedList, Stack.
+- While implementing Queue using stack. use two stack. for every element pop out from first one and push into 2nd,
+  After pushing current element into first the push all the elements from 2nd stack into first.
+
 
 Important
 =========
 - If size is not exceeds and rear reaches the end of queue, then empty spaces are from font. use the mod operation to
   decide the place from to insert the new element.
   end = (end+1) % size;
+
+
 

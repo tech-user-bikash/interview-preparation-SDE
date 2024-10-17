@@ -1,7 +1,5 @@
 package com.dsa.stack;
 
-import java.util.Arrays;
-
 public class StackMainClass {
     public static void main(String[] args) {
         StackOperations stOps = new StackOperations();
@@ -72,14 +70,30 @@ public class StackMainClass {
 
 
         // maximum sum of k size sub-array
-        int[] A = {1, 4, 2, 10, 2, 3, 1, 0, 20};
-        int max = stOps.maxSumKSizeWindow(A, 4);
-        System.out.println(max);
+//        int[] A = {1, 4, 2, 10, 2, 3, 1, 0, 20};
+//        int max = stOps.maxSumKSizeWindow(A, 4);
+//        System.out.println(max);
 
         // find maximum of each sub array of size K window
         // https://leetcode.com/problems/sliding-window-maximum/
         // https://www.youtube.com/watch?v=CZQGRp93K4k&list=PLgUwDviBIf0oSO572kQ7KCSvCUh1AdILj&index=13
-        int[] maxArr = stOps.maxSlidingWindow(A, 3);
-        System.out.println(Arrays.toString(maxArr));
+//        int[] maxArr = stOps.maxSlidingWindow(A, 3);
+//        System.out.println(Arrays.toString(maxArr));
+
+
+        // Trapping Rain Water
+        // https://www.youtube.com/watch?v=1_5VuquLbXg&list=PLgUwDviBIf0pOd5zvVVSzgpo6BaCpHT9c&index=8
+        /**
+         * Sum(1-N)-->Min(leftMax, rightMax) - A[i]
+         */
+        int[] A = {2,1,0,5,3};
+//        int ans = stOps.findTotalWaterConsumption(A);
+        // we may need Min(rightMax or leftMax), no need both of them at same time.
+        // need to traverse from both direction as we don't know both for single iteration
+        int ans = stOps.findTotalWaterConsumptionOptimization(A);
+        System.out.println(ans);
     }
+
+
+
 }

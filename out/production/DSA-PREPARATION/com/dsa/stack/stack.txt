@@ -6,3 +6,21 @@ Stack using Array, LinkedList, Queue.
 
 while performing Stack implementation using Queue. before pushing any element, if any element is already present,
 simply reverse it and push.
+
+Infix -> Prefix
+---------------
+1. Reverse the string.
+2. Infix to Postfix.
+3. Reverse the answer.
+
+- Design Min Stack.
+    - Create a Stack which will contain Pair class with (data, min_value).
+    - While pushing data into Stack keep track of min value of every push.
+    - Find the pseudocode below.
+        private void pushPairElement(int data) {
+            if (stack.isEmpty()) {
+                stack.push(new Pair(data, data));
+            } else {
+                stack.push(new Pair(data, Math.min(data, stack.peek().min)));
+            }
+        }

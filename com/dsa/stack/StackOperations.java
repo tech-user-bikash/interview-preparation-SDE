@@ -32,6 +32,7 @@ public class StackOperations {
         int N = arr.length;
         int[] res = new int[N];
         Stack<Integer> st = new Stack<>();
+        // Find NGE in forward direction with circular way
         if (isCircular) {
             for (int i = 0; i < (2 * N) - 1; i++) {
                 while (!st.isEmpty() && arr[i % N] >= st.peek()) {
@@ -47,7 +48,10 @@ public class StackOperations {
                 st.push(arr[i % N]);
             }
         } else {
+            // find NGE in backward direction
+            // TC: O(N) + O(N)
             for (int i = N - 1; i >= 0; i--) {
+                // TC: O(N)
                 while (!st.isEmpty() && arr[i] >= st.peek()) {
                     st.pop();
                 }
@@ -190,5 +194,67 @@ public class StackOperations {
             }
         }
         return maxArr;
+    }
+
+    // TC: O(N+N+N) ~ O(3N), SC: O(2N)
+    public int findTotalWaterConsumption(int[] A) {
+        int N = A.length;
+
+        // calculate prefix left max array
+        int[] pfLeftMax = new int[N];
+        pfLeftMax[0] = A[0];
+        for(int i = 1; i<N; i++){
+            pfLeftMax[i] = Math.max(pfLeftMax[i-1], pfLeftMax[i]);
+        }
+
+        // calculate prefix right max array
+        int[] pfRightMax = new int[N];
+        pfRightMax[N-1] = A[N-1];
+        for(int i = N-2; i>=0; i--){
+            pfRightMax[i] = Math.max(pfRightMax[i+1], pfRightMax[i]);
+        }
+
+        int totalWater = 0;
+        // calculate total water is trapped between two building
+        for(int i = 0; i<N; i++){
+            // current element should be smaller than both sides of building, then exclude the current element from
+            // answer as it occupied some space.
+            if(A[i] < pfLeftMax[i] && A[i] < pfRightMax[i]){
+                totalWater+=Math.min(pfLeftMax[i], pfRightMax[i]) - A[i];
+            }
+        }
+        return totalWater;
+    }
+
+    // TC: O(N), SC:O(1)
+    public int findTotalWaterConsumptionOptimization(int[] A) {
+        int N = A.length;
+        int left = 0, right = N-1;
+        int leftMax = 0, rightMax = 0;
+        int totalWater = 0;
+
+        while(left < right){
+            // deal with smaller one
+            if(A[left] <= A[right]) {
+                // current element should be smaller than leftMax, then total will calculate
+                // else update the leftMax value
+                if(A[left] < leftMax){
+                    totalWater+= leftMax - A[left];
+                } else {
+                    leftMax = A[left];
+                }
+                left++;
+            }
+            // deal with bigger one
+            else {
+                if(A[right] < rightMax){
+                    totalWater+= rightMax - A[right];
+                } else {
+                    rightMax = A[right];
+                }
+                right--;
+            }
+        }
+        return totalWater;
     }
 }
