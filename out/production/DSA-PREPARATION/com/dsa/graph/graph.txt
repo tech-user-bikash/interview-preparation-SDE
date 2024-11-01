@@ -31,3 +31,147 @@ for(int deltaRow = -1; deltaRow <= 1; deltaRow++){
         }
     }
 }
+
+- undirected graph cycle detection.
+    - check for each component.
+    - maintain a Pair of currentNode, and it's parent.
+    - always check if already visited node is a parent of it's or not? if not, then cycle is present.
+
+Bipartite Graph
+---------------
+Color the graph with 2 colors such that no adjacent nodes have same color.
+
+Tips: Always bipartite graph is linear graph which has no cycle. But for even cycle length is even a
+bipartite.
+
+- For directed graph to find the cycle, DFS algo will use 2 visited array. one is for visit the graph and
+other is for path visit.
+
+Topological Sort Algorithm
+--------------------------
+https://www.youtube.com/watch?v=5lZ0iJMrUMk&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=21
+- It only exists in DAG. Graph has no cycle for directed graph.
+- DFS algo uses for traversal.
+- Any linear ordering of vertices such that if there is an edge between u & v, u appears before v in that ordering.
+- why only for DAG? because bidirectional & cycle in directed graph will not maintain the ordering.
+
+https://www.youtube.com/watch?v=iTBaI90lpDQ&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=23
+- It can be used to detect a cycle in directed graph. How?
+    - perform Topological sor algo using BFS (Kahn's Algo).
+    - If topologicalSort size is same as total vertices of the graph, then there is no cycle or else it has.
+
+Intuition: after completed of every DFS call, put that node into stack. It ensures that further nodes are
+            connected to it is already been visited and available in stack.
+
+Kahn's Algorithm(Topological Sort using BFS)
+--------------------------------------------
+- Insert all in-degree has 0 into queue.
+- Take out one by one and reduce the in-degree value.
+- Once in-degree becomes 0 after reducing, then put into te queue.
+- To calculate in-degree array, visit all the nodes and increment the adj node index by 1.
+
+Shortest Path Algo
+------------------
+1. if it is a DAG, go for topo sort and distance array
+2. for undirected graph with unit weight, use simple BFS algo with distance array.
+2. if it graphs has cycle, then go for Dijkastra Algo.
+
+
+[1]. Shortest Path in Directed Acyclic Graph(DAG) using Topological Sort
+------------------------------------------------------------------------
+Step-1: Do a topo sort for the given graph.
+step-2: Take all the nodes out from the stack and relax the edges.(Declare a distance array and default value
+        will be infinity)
+
+[3]. Dijkstra's Algorithm
+-------------------------
+- It can be solved by using Priority Queue and Set data structure.
+- it will not work for -ve weight. because it will go for infinity min distance. -ve + -ve = less -ve
+ 0---------1 (wt=-2)
+- if there are unit distance diff between the nodes of the graph, use Queue instead of Priority Queue.
+
+1. Create Distance array and a min heap which will contain a pair of node and distance to it.
+    Push the source node into Q.
+    Queue<Pair> pq = new PriorityQueue<>(Comparator.comparingInt(x->x.distance));
+2. Traverse the Q until it becomes empty.
+3. For each traversal remove the top Pair queue and check it's neighbor if anyone has less
+    distance compared to earlier. if yes, update the min distance.
+
+
+Bellman Ford Algorithm
+----------------------
+- helps to find shortest path with -ve wight or distance.
+- It works with DG(Directed Graph).
+- edges can be in any order.
+
+1. Relax all the edges N-1 times sequentially.
+    Relax = if(dist[u] + wt , dist[v]){ dist[v] = dist[u] + wt}
+
+- why N-1 times?
+    as edges are in ay order then graph may be like 0->1->2->3->4.
+    To update one another until N-1 times relaxation is required.
+
+    Ans: since in a graph of N nodes, in worst case, you will take N-1 edges to reach from the first
+    to the last. ThereBy we iterate for N-1 times.
+
+- How to detect -ve cycle?
+    Ans: on Nth iteration, the relaxation will be done. and in the dist[] array gets reduced,
+    then we can say that -ve cycle exist.
+
+Floyd Warshall Algorithm
+========================
+- Dijkastra and BellmanFord algo is for single source the shortest path algo.
+- This algo is for multi-source the shortest path algo.
+- if the costing of any node from 0->n cost[i][i] < 0 = -ve cycle exists.
+
+Minimum Spanning Tree
+---------------------
+- Tree which has N nodes and N-1 edges and all nodes are reachable from each other.
+- A graph can have multiple spanning tree. But among them which has minimum sum is called as MST.
+
+Prim's Algorithm - MST
+----------------------
+- It helps to find the MST.
+- one PQ(min heap), visited[] arr, MST[] arr. Put Pair(node, weight, parent) int PQ. i.e PQ.add(new Pair(0,0,-1)).
+- remove the top Node from PQ.
+    - mark as visited.
+    - add the edge int MST.(except first time. if parent = -1).
+    - add the weight into the sum.
+    - Check all the neighbours and if not visited, add them into PQ.
+
+Note:
+- while removing from PQ, mark as visited.
+- here Greedy algo is the intuition. because always less weight edge will be considered for MST.
+
+-------------
+Disjoint Set |
+-------------
+- to check any node's component in a graph, it will give in constant time.
+- Using BFS/DFS traversal, it is taking O(E + V) time. Disjoint will take O(1) time.
+- it is usually used in dynamic graph which has constantly changing.
+- it has some functionality like getParent(node) and Union()--> rank and size.
+
+Dynamic Graph : give some edges and one by one forming the graph. if anytime in middle ask for a node
+                if it is belongs to same component or not, Disjoint Set will give Yes/No in constant time.
+
+- in order to implement Disjoint Set, Union() can be implemented by 2 ways.
+
+[1]. Union By Rank
+------------------
+- rank means, how many node beneath(below) it.
+- ultimate parent: among the bunch of nodes which has at the top is called as ultimate parent.
+- initial config:
+    - create rank[V]=0 and parent[V]=node(every node's parent, itself) array's.
+- union(u, v):
+    1. find ultimate parent of u & v which is pu and pv.
+    2. find rank of those ultimate parent's i.e. pu & pv.
+    3. connect smaller rank to larger rank always.(for equal rank, anyone can connect to any other one).
+
+- Does 1 & 7 are belongs to same component ?
+    - here getParent(node) will help. it gets the ultimate parent of given node.
+    - if both are same, then yes, or else no.
+
+[1]. Union By Size
+------------------
+- initial config:
+    - create size[V]=1 and parent[V]=node(every node's parent, itself) array's.
