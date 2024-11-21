@@ -1,0 +1,52 @@
+Algorithm:
+==========
+1. Floyd’s Cycle-Finding Algorithm: loop detection in LL.
+2. Topological Sort Algorithm: DAG(Directed Acyclic Graph) - Using DFS
+3. Kahn's Algorithm: (Topological Sort using BSF algo)
+
+==========
+|| Tips ||
+==========
+- to add a number dynamically from start and end. calculate below
+    index = (flag==true) ? i : size - i -1;
+    list.add(val) = will always add at the end
+    list.add(0, val)  = always add the value at first index and others will shift towards right
+
+Pattern
+=======
+https://www.youtube.com/watch?v=DjYZk8nrXVY
+https://blog.algomaster.io/p/15-leetcode-patterns
+
+1. Prefix Sum: Query sum of elements in a sub-array.
+   SUM[i,j] = pf[j] + pf[i-1];
+2. Two Pointers: check palindrome of string.
+3. Sliding Window: find sub-array of size K with maximum sum.
+4. Fast & Slow Pointers: Helps in finding cycles in LL and array.
+5. LL in-place reversal.
+6. Monotonic Stack: next greater and smaller element from an array.
+7. Top 'K' elements: 'K' largest/smallest/most frequent.
+8. Overlapping intervals: merging intervals, meeting rooms
+9. Modified Binary Search:
+    - Searching in a nearly sorted array.
+    - Searching in a rotated sorted array.
+    - Searching in a list with unknown length.
+    - Searching in an array with duplicates.
+    - Finding the first/last occurrence of an element.
+    - Find the Square Root of a number.
+    - Finding a PEAK element.
+10. Binary Tree Traversal:
+    - PreOrder = Root->left->Right.
+    - InOrder = Left->Root->Right.
+    - PostOrder = Left->Right->Root.
+11. DFS
+12. BFS
+13. Matrix Traversal
+14. Backtracking: generate all possible permutations & combinations of a given set of elements.
+15. DP: https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming
+    - Overlapping sub-problems,Optimal sub-structure properties like below.
+    - maximize/Minimize a certain value.
+    - Count the no of ways to achieve certain goal.
+    - Fibonacci Numbers
+    - 0/1 knapsack, Longest Common Subsequence(LCS), Longest Increasing Subsequence(LIS), Subset Sum
+    - Matrix Chain Multiplication.
+

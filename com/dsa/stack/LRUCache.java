@@ -16,6 +16,16 @@ public class LRUCache {
         deque = new LinkedList<>();
     }
 
+    static class LRUNode {
+        int key;
+        int value;
+
+        LRUNode(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
     // 1. put operation
     public void put(int key, int value) {
         // 1. if already present, update it
@@ -44,15 +54,5 @@ public class LRUCache {
         deque.remove(LRUNode);
         deque.addFirst(LRUNode);
         return LRUNode.value;
-    }
-}
-
-class LRUNode {
-    int key;
-    int value;
-
-    LRUNode(int key, int value) {
-        this.key = key;
-        this.value = value;
     }
 }

@@ -1,0 +1,138 @@
+Types of Binary Tree
+--------------------
+1. Full Binary Tree: either has 0 or 2 children.
+2. Complete Binary Tree:
+    All leaves are completely filled except the last level.
+    The last level has all nodes in left as possible.
+3. Perfect Binary Tree: All leaf nodes are at same level.
+4. Balanced Binary Tree: height of the tree at max log(N). N = no of nodes.
+5. Degenerate Tree: It is a skew tree. only left or right is present for root node.
+
+Representation of BT
+--------------------
+class Node{
+    int data;
+    Node left;
+    Node right;
+}
+
+Tree Traversal
+--------------
+- BFS and DFS is the technique to traverse any tree.
+- DFS - InOrder, PreOrder, PostOrder
+- BFS - level wise traversal.
+BFS
+---
+1. Create a Queue and add root of the tree.
+2. traverse the Queue until it's empty.
+    - Traverse a loop till the size of Q.
+        - poll the Node from Q and print / add into any storage DS like list/array.
+        - check left and right node. for nonnull add into Queue.
+DFS(iterative)
+---------------
+- Take stack and add the root node to it.
+- each time remove the node from stack and add it's right & left (InOrder).
+- reverse node will add into Q because while removing we will remove last added one.
+
+Balance tree check
+-----------------
+- for every node, abs(height(leftNode) - height(rightNode)) <= 1
+
+Diameter of BT
+--------------
+1. longest path between any 2 node.
+2. path doesn't need to pass via root.
+
+Boundary Traversal
+------------------
+
+1. left boundary excluding leaves
+    - traverse left, until it is null/leaf node,
+    - if null, go to right, and it's left.
+2. leaves -- Inorder Traversal
+3. right boundary in the reverse(use stack), excluding leaves
+
+Top/Bottom View
+---------------
+- use level order traversal
+- use vertical technique to solve this problem.
+- each vertical's first node is the ans
+- each vertical's last node is the ans
+
+Left/Right View
+---------------
+- Use recursive(pre, in, post) order traversal.
+- level(BFS) order is not suitable, bcz in worst case last level has filled with all nodes which is not required.
+- for Right view traverse from right and store first node.
+- for Left view traverse from left and store first node.
+
+LCA(Lowest Common Ancestor)
+----------------------------
+- Given 2 node let say (4,7) . common node for both 4 & 7 is LCA.
+- get the path of node's from root and traverse both path till last common node. (Brute Force)
+- use Post order traversal and if you find any target node return that.
+  if left & right is retuning nonnull value that is the LCA.
+         1
+       /   \
+      2     3
+     / \   / \          LCA(4,7) = 2
+    4   5 8   9         LCA(5.8) = 1
+       / \
+      6   7
+
+Construct tree from PreOrder, InOrder
+-------------------------------------
+1. Create Map<Value, Index> from InOrder to find the value in constant time.
+2. Build Tree:
+    A. Check range of preOrder a& inOrder arr.
+        if(preStart > preEnd || inStart > inEnd) return null;
+    B. Create Root Node with preOrder[preStart].
+        I.  Create Left Node
+                preStart = preStart + 1,
+                preEnd = preStart + [map.get(root.val) - inStart]
+                    (Total Node left in inOrder from the root) i.e. current_node in order - start of inorder
+                inStart = inStart,
+                inEnd = map.get(root.val) - 1 (from the curr position - 1)
+        II. create Right Node
+                preStart = preStart + (map.get(root.val) - inStart) which is remaining left of root + 1,
+                preEnd = preEnd
+                inStart = map.get(root.val) + 1, (from the curr position + 1)
+                inEnd = inEnd
+
+Optimized:
+    1. Create Map<Value, Index> from InOrder to find the value in constant time.
+    2. Build tree:
+        A. in preorder, root starts from start and post order root starts from last index of array.
+        B. everytime calculate the root value and in order index.
+        C. create left node with in order start to inIdx - 1.
+        D. create right node with in order inIdx + 1 to end index. where inIdx = in order index.
+
+Morris Traversal
+----------------
+- It will take recursive traversal TC : O(N), SC : O(1). Doesn't consume any extra space.
+- It used threaded binary tree.
+- It has multiple cases.
+  1. If left = null, print the root , move to right node.
+  2. Before moving to left from right, the right most node of left subtree will be connected
+     to the parent and move left node.
+  3. If there is a link, remove it and move to right.
+
+
+Binary Search Tree
+------------------
+    N     L < N < R
+   / \    . left subtree should be a BST
+  L   R   . right subtree also be a BST
+
+- Are duplicates allowed?  Generally shouldn't, if exists the modify the condition as follow
+    L <= N < R
+- validate tree is BST or not?
+    Ans: check range for each node
+Tips:
+----
+- to create a visited[] arr, in tree total no of nodes are unknown.
+    while visiting the nodes we can put into Set and check if the node is available inside SET or not.
+    -- Check Distance K problem.
+- In tree if we want to go backward direction, then need to create parentMap.
+    -- distance K, Burn Node
+- In order traversal always print the nodes in sorted order.

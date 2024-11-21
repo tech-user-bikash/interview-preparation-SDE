@@ -3,6 +3,7 @@ package com.dsa.graph;
 import java.util.ArrayList;
 import java.util.List;
 
+// https://www.youtube.com/watch?v=aBxjDBC4M1U&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=46
 public class DisjointSet {
     List<Integer> rank = new ArrayList<>();
     List<Integer> parent = new ArrayList<>();
@@ -65,15 +66,13 @@ public class DisjointSet {
         // if 3 and 7 same or not
         if(ds.findUPar(3) == ds.findUPar(7)) {
             System.out.println("Same");
-        }
-        else
+        } else
             System.out.println("Not Same");
 
         ds.unionByRank(3, 7);
         if(ds.findUPar(3) == ds.findUPar(7)) {
             System.out.println("Same");
-        }
-        else
+        } else
             System.out.println("Not Same");
     }
 }

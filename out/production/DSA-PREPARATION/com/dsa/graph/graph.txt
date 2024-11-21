@@ -143,6 +143,12 @@ Note:
 - while removing from PQ, mark as visited.
 - here Greedy algo is the intuition. because always less weight edge will be considered for MST.
 
+Kruskal's Algorithm - MST
+-------------------------
+- sort all the edges acc to weight.
+- create Disjoint Set.
+https://www.youtube.com/watch?v=DMnDM_sxVig&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=47
+
 -------------
 Disjoint Set |
 -------------

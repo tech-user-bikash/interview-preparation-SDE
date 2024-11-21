@@ -15,6 +15,26 @@ public class LFUCache {
     Map<Integer, Deque<LFUNode>> freqMap;
     Map<Integer, LFUNode> cacheMap;
 
+    static class LFUNode {
+        int key;
+        int value;
+        int freq;
+
+        LFUNode(int K, int V) {
+            this.key = K;
+            this.value = V;
+            freq = 0;
+        }
+
+        @Override
+        public String toString() {
+            return "LFUNode{" +
+                    "key=" + key +
+                    ", value=" + value +
+                    ", freq=" + freq +
+                    '}';
+        }
+    }
     /**
      * Initialize the default values of LFU Cache properties.
      *
@@ -102,28 +122,7 @@ public class LFUCache {
             freqMap.put(1, newDeque);
             cacheMap.put(key, newNode);
         }
-
-
     }
 }
 
-class LFUNode {
-    int key;
-    int value;
-    int freq;
 
-    LFUNode(int K, int V) {
-        this.key = K;
-        this.value = V;
-        freq = 0;
-    }
-
-    @Override
-    public String toString() {
-        return "LFUNode{" +
-                "key=" + key +
-                ", value=" + value +
-                ", freq=" + freq +
-                '}';
-    }
-}

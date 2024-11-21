@@ -1,5 +1,0 @@
-Algorithm:
-==========
-1. Floyd’s Cycle-Finding Algorithm: loop detection in LL.
-2. Topological Sort Algorithm: DAG(Directed Acyclic Graph) - Using DFS
-3. Kahn's Algorithm: (Topological Sort using BSF algo)

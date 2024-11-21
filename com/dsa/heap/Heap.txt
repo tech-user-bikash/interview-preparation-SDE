@@ -1,0 +1,60 @@
+Heap
+====
+https://www.youtube.com/watch?v=OJZ1bHzwsqU&list=PLt4nG7RVVk1j4vPcIqLqUZLOlOyd8KHw5
+- Tree based Data Structure.
+- It should be a complete Binary tree.
+- heap property must be followed.
+
+- Complete Binary Tree is of 2 type as below.
+- Perfect Binary Tree : All levels are completely filled.
+- Almost Complete Binary Tree:
+    - leaves should be present only at the last and 2nd last level.
+    - leaves at same level must be filled from left to right.
+
+Heap Representation
+-------------------
+- A tree can be represented in the form of an array.
+    Parent = i, where i >= 0
+    left-child = 2i + 1, where i >= 0
+    right-child = 2i + 2, where i >= 0
+    parent of a child i = ceil(i/2) - 1 ~~ (i-1)/2
+- What should be the array size while constructing from a heap.
+  - For Perfect Binary Tree, total nodes = 2^(h+1)-1, , where h = height of the tree.
+- leaves range = floor(N/2)+1 to N
+  internal node range = 1 to floor(N/2)
+
+Heapify Algorithm
+-----------------
+- when adding an element, it always adds into last node of tree. and
+  then heapify it to maintain the max-heap property.
+- In delete, always delete the top element and replace with last element from the max-heap,
+  then heapify it to maintain the max-heap property.
+- heapify(index):
+    - calculate left and right index from given index.
+    - get the largest value index and check if current index and largest index are same or not.
+    - if same, return. else swap those value and call heapify() function with the largest index value.
+
+- From an array if we want to construct a heap, then calculate the left and right element for every node.
+ Ex: for node i, left node = (2 * i + 1), right node = (2 * i + 2)
+- for any node i, calculate the parent =  (i - 1) / 2.
+- priorityQueue can be used as Heap data structure.
+- Ex: file sort acc to size.
+
+                    INSERT      SEARCH      FIND_MIN    DELETE_MIN
+---------------------------------------------------------------------
+UN-SORTED ARRAY     O(1)        O(N)        O(N)        O(N)
+SORTED ARRAY        O(N)        O(log N)    O(1)        O(N)
+LINKED LIST         O(1)        O(N)        O(N)        O(N)
+HEAP                O(log N)    O(N)        O(1)        O(log N)
+----------------------------------------------------------------------
+Note: by using map in heap, Search can be optimised further.
+
+1. Given an array, build max heap form it.
+    - start from arr.size / 2 - 1 till 0. i.e. last internal node to root node
+    - check each left & right node of that internal node and swap if root node is less than any of child node.
+
+PriorityQueue
+=============
+- By default it is min-heap.
+- for max-heap, pass Collections.reverseOrder() in constructor.
+    Queue<Integer> PQ = new PriorityQueue<>(Collections.reverseOrder());
