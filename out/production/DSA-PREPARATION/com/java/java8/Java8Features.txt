@@ -1,0 +1,71 @@
+https://www.youtube.com/playlist?list=PLGRDMO4rOGcMz8Y1OTVpD-bRBnNBWYrkc
+
+Lambda Expression
+-----------------
+1. Remove modifier.
+2. Remove return type.
+3. Remove method name.
+4. Place arrow.
+5. Create a custom class and define an abstract method. To use this method don't create the
+   implementation class instead use lambda expression.
+
+Benefits of LE
+--------------
+1. To enable parallel processing.
+2. JAR file size reduction.
+3. Elimination of shadow variables.
+
+Functional Interface
+--------------------
+- It has only one abstract method and any no of static and default methods.
+- Use @FunctionalInterface for marking that interface as functional interface.
+- without using it there is no error, if we use, someone while add one more abstract method error will show.
+
+Predicate<T>
+-------------
+- boolean test(T t);
+- used for to check some condition.
+- it used in filter() for stream api.
+
+Function<T, R>
+--------------
+- R apply(T t)
+- Takes one arg as input, do some operation and return some output.
+- used in map function in stream api.
+
+Consumer<T>
+-----------
+- void accept(T t);
+- take some input, do or don't do some operation and mostly print the result or store in DB like that.
+- It used in forEach().
+
+Supplier<T>
+-----------
+- T get()
+- what it takes as input return as result.
+
+BiPredicate<T, U> -- boolean test(T t, U u);
+BiFunction<T, U, R> -- R apply(T t, U u);
+biConsumer<T, U> -- void accept(T t, U u)
+
+Unary Operator
+--------------
+- UnaryOperator<T>
+- if a function take input and gives the output for same type, then unary operator can be used.
+- It is an extension of Function<T, T>. T is same type.
+
+Binary Operator
+---------------
+- If a BiFunction has same type of input and output then we can use BinaryOperator<T>.
+
+Method & Constructor Reference
+------------------------------
+- method reference allows us to refer to a method without invoking it, making our code
+  cleaner and more readable.
+- They can be used in place of lambda expression when lambda expression only calls an existing method.
+- use object reference inplace of class name and for static method use class name directly.
+
+Joda Date Time
+---------------
+https://www.youtube.com/watch?v=hPhpsC4kFdI&list=PLA3GkZPtsafZR6arC1A3N0i968gk9RvMv&index=20
+

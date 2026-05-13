@@ -1,0 +1,9 @@
+- two pointers or sliding window templates are below:
+1. Constant Window:
+   Ex: A = [-1,2,3,4,5,-2], K = 4 (no of total element for each time).
+   Find the max sum for given size of window.
+
+2. Longest sub-array or substring where <condition>
+   Ex: Longest Sub-array with sum <= K. A=[2,5,1,7,0], K = 14
+
+3. No of sub-array's where <condition>.
